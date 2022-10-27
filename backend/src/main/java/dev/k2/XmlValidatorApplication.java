@@ -8,4 +8,5 @@ public class XmlValidatorApplication {
     public static void main(String[] args) {
         SpringApplication.run(XmlValidatorApplication.class, args);
     }
+
 }

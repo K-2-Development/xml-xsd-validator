@@ -1,5 +1,6 @@
 package dev.k2.validateXml;
 
+import dev.k2.commons.XsdFileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ public class ValidateXmlService {
 
     public ValidationResponse validateXml(String schemaId, String xmlToValidate)
     {
-        String xsd = xsdFileRepository.xsdFile(schemaId);
+        String xsd = xsdFileRepository.getFile(schemaId);
 
 
         throw new RuntimeException("Not implemented yet.");

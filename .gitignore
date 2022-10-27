@@ -8,3 +8,4 @@
 /dataSources.local.xml
 .idea/
 /backend/src/main/resources/static
+target/
