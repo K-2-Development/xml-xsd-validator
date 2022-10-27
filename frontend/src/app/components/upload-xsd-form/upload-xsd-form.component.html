@@ -1,6 +1,11 @@
 <div class="wrapper">
-  <input class="file-select" type="file" value="Select file…">
-  <div class="progress-bar-outer">
-    <div class="progress-bar-inner"></div>
+  <h1 class="header">Upload new XSD file.</h1>
+  <label class="input file-select">
+    Select file…
+    <input style="display: none;" class="upload-dialog" accept=".xsd" (change)="onChosenFileChange($event)" type="file">
+  </label>
+  <input (click)="uploadFile()" class="input file-upload"  type="button" value="Upload">
+  <div *ngIf="progressBarVisibility" class="progress-bar-outer">
+    <div #progress class="progress-bar-inner"></div>
   </div>
 </div>

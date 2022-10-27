@@ -1,0 +1,15 @@
+minio:
+  endpoint: "http://minio-files:9000"
+spring:
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://postgres-files:5432/files
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format-sql: true
+      show-sql: false
