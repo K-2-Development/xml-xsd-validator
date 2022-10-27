@@ -3,11 +3,10 @@ package dev.k2.commons;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-@Primary
 @Repository
 public class TestXsdFileRepository implements XsdFileRepository{
     @Override
-    public String saveFile(byte[] file) {
+    public String saveFile(byte[] file, String fileName) {
         return "xd";
     }
 

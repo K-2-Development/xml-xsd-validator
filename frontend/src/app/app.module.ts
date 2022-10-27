@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UploadXsdFormComponent } from './components/upload-xsd-form/upload-xsd-form.component';
 import { ListXsdFilesComponent } from './components/list-xsd-files/list-xsd-files.component';
 import { XsdFileComponent } from './components/xsd-file/xsd-file.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { XsdFileComponent } from './components/xsd-file/xsd-file.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
