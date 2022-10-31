@@ -12,13 +12,14 @@ export class UploadXsdFormComponent implements OnInit {
   @ViewChild("progress")
   progressBar!: ElementRef<HTMLDivElement>;
 
+  @ViewChild("selectedFile")
+  selectedFile!: ElementRef<HTMLParagraphElement>;
+
   progress: number;
-  progressBarVisibility: boolean;
   file: File | undefined;
 
   constructor(private uploadFileService: UploadFileService) {
     this.progress = 0;
-    this.progressBarVisibility = false;
   }
 
   ngOnInit(): void {
@@ -30,31 +31,34 @@ export class UploadXsdFormComponent implements OnInit {
         .subscribe((event: HttpEvent<any>) => {
           switch (event.type) {
             case HttpEventType.Sent:
-              this.progressBarVisibility = true;
               break;
             case HttpEventType.ResponseHeader:
               break;
             case HttpEventType.UploadProgress:
               var eventTotal = event.total ? event.total : 0;
               this.progress = Math.round(event.loaded / eventTotal * 100);
-              this.updateProgress(this.progress);
-              console.log(`Uploaded! ${this.progress}%`);
+              this.updateProgress();
               break;
             case HttpEventType.Response:
               this.progress = 100;
-              this.progressBarVisibility = false;
+              this.progressBar.nativeElement.style.backgroundColor = "#00ff59";
               break;
           }
         });
     }
   }
 
-  private updateProgress(value: number){
-    this.progressBar.nativeElement.style.width = `${value}%`
+  private updateProgress(){
+    this.progressBar.nativeElement.style.width = `${this.progress}%`
   }
 
   onChosenFileChange(event:any) {
     this.file = event.target.files[0];
+    if (this.file !== undefined)
+      this.selectedFile.nativeElement.innerText = this.file?.name;
+
+    this.progressBar.nativeElement.style.width = "0";
+    this.progressBar.nativeElement.style.backgroundColor = "#0099ff";
   }
 
 }
