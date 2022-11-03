@@ -15,13 +15,13 @@ public class UploadXsdFileService {
     private final XsdFileRepository xsdFileRepository;
     private final XsdFileDescriptionRepository xsdFileDescriptionRepository;
 
-    public String uploadXsdFile(byte[] file, String filename) {
+    public FileDescription uploadXsdFile(byte[] file, String filename) {
         String generatedFilename = UUID.randomUUID().toString() + ".xsd";
         FileDescription fileDescription = new FileDescription();
         fileDescription.setOriginalFilename(filename);
         fileDescription.setGeneratedFilename(generatedFilename);
         FileDescription created = xsdFileDescriptionRepository.save(fileDescription);
         xsdFileRepository.saveFile(file, generatedFilename);
-        return generatedFilename;
+        return created;
     }
 }
