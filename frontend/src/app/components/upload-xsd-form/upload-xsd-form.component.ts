@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UploadFileService} from "../upload-file.service";
 import {HttpEvent, HttpEventType} from "@angular/common/http";
+import {FilesService} from "../files.service";
 
 @Component({
   selector: 'app-upload-xsd-form',
@@ -18,7 +19,7 @@ export class UploadXsdFormComponent implements OnInit {
   progress: number;
   file: File | undefined;
 
-  constructor(private uploadFileService: UploadFileService) {
+  constructor(private uploadFileService: UploadFileService, private filesService: FilesService) {
     this.progress = 0;
   }
 
@@ -40,6 +41,7 @@ export class UploadXsdFormComponent implements OnInit {
               this.updateProgress();
               break;
             case HttpEventType.Response:
+              this.filesService.addFile(event.body);
               this.progress = 100;
               this.progressBar.nativeElement.style.backgroundColor = "#00ff59";
               break;

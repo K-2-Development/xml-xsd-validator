@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FilesService} from "../files.service";
+import {FileDescription} from "../file-description";
 
 @Component({
   selector: 'app-list-xsd-files',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListXsdFilesComponent implements OnInit {
 
-  constructor() { }
+  files: FileDescription[];
 
-  ngOnInit(): void {
+
+  constructor(public filesService: FilesService) {
+    this.files = this.filesService.filesArray;
+    console.log(this.files);
   }
 
+  ngOnInit(): void {
+
+  }
 }

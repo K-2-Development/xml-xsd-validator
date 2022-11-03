@@ -12,7 +12,7 @@ public class ValidateXmlService {
 
     public ValidationResponse validateXml(String schemaId, String xmlToValidate)
     {
-        String xsd = xsdFileRepository.getFile(schemaId);
+        byte[] xsd = xsdFileRepository.getFile(schemaId);
 
 
         throw new RuntimeException("Not implemented yet.");

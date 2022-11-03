@@ -1,3 +1,7 @@
 <div class="wrapper">
-List
+  <div *ngFor="let file of this.filesService.filesArray" class="list-entry">
+    <app-xsd-list-item
+      [file]="file"
+    ></app-xsd-list-item>
+  </div>
 </div>
