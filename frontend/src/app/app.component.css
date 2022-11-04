@@ -11,6 +11,7 @@
   padding: 20px;
 }
 
+
 .list{
   grid-area: list;
 }
@@ -20,4 +21,11 @@
 }
 
 .idk{
+}
+
+@media screen and (max-width: 830px) {
+  .wrapper{
+    grid-template-areas: "upload" "idk" "list";
+    grid-template-columns: 1fr;
+  }
 }
