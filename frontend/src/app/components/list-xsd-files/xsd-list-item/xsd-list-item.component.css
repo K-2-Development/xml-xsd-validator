@@ -4,15 +4,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 12px;
-
-  border: 1px solid black;
+  padding: 0 8px;
 }
+
 
 .buttons{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   flex-direction: row;
 }
