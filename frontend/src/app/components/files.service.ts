@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {saveAs} from "file-saver";
 import {FileDescription} from "./file-description";
-import {Subject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +19,7 @@ export class FilesService {
 
   addFile(file: FileDescription) {
     this.files.set(file.id, file);
-    this.filesArray.push(file);
+    this.filesArray.unshift(file);
   }
 
   loadAllFiles() {
