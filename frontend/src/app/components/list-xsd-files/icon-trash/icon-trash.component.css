@@ -10,11 +10,17 @@
   cursor: pointer;
 }
 
+.wrapper:hover > .lid{
+  transform-origin: 0 100%;
+  transform: rotateZ(-10deg) translateY(-1px);
+}
+
 .lid{
   width: 55%;
   height: 10%;
   background-color: currentColor;
   clip-path: polygon(0 20%, 40% 20%, 40% 0, 60% 0, 60% 20%, 100% 20%, 100% 100%, 0 100%);
+  transition: all 0.1s ease-in-out 0s;
 }
 
 .can{
@@ -31,7 +37,7 @@
 }
 
 .line{
-  width: 10%;
+  width: 2px;
   height: 60%;
   background-color: #fff;
   border-radius: 2px;
