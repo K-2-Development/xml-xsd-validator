@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UploadFileService} from "../upload-file.service";
-import {HttpEvent, HttpEventType} from "@angular/common/http";
+//import {HttpEvent, HttpEventType} from "@angular/common/http";
 import {FilesService} from "../files.service";
 
 @Component({
@@ -27,6 +27,7 @@ export class UploadXsdFormComponent implements OnInit {
   }
 
   uploadFile() {
+  /*
     if(this.file != undefined) {
       this.uploadFileService.sendFile(this.file)
         .subscribe((event: HttpEvent<any>) => {
@@ -48,7 +49,9 @@ export class UploadXsdFormComponent implements OnInit {
           }
         });
     }
+    */
   }
+
 
   private updateProgress(){
     this.progressBar.nativeElement.style.width = `${this.progress}%`
