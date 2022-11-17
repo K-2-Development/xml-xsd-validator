@@ -93,7 +93,7 @@ public class MinioXsdFileRepository implements XsdFileRepository{
     }
 
     @Override
-    public boolean deleteFile(String fileName) {
+    public void deleteFile(String fileName) {
 
         try{
 
@@ -103,8 +103,6 @@ public class MinioXsdFileRepository implements XsdFileRepository{
                             .object(fileName)
                             .build()
             );
-
-            return true;
 
         } catch (ErrorResponseException e) {
             throw new RuntimeException(e);

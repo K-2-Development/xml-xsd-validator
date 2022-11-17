@@ -6,5 +6,5 @@ public interface XsdFileRepository {
 
     byte[] getFile(String fileId);
 
-    boolean deleteFile(String fileName);
+    void deleteFile(String fileName);
 }

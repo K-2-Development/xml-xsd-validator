@@ -537,7 +537,7 @@ public class TestXsdFileRepository implements XsdFileRepository{
     }
 
     @Override
-    public boolean deleteFile(String fileName) {
-        return true;
+    public void deleteFile(String fileName) {
+        ;
     }
 }
