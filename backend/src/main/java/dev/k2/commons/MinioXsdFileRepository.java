@@ -95,15 +95,13 @@ public class MinioXsdFileRepository implements XsdFileRepository{
     @Override
     public void deleteFile(String fileName) {
 
-        try{
-
+        try {
             minioClient.removeObject(
                     RemoveObjectArgs.builder()
                             .bucket(bucketName)
                             .object(fileName)
                             .build()
             );
-
         } catch (ErrorResponseException e) {
             throw new RuntimeException(e);
         } catch (InsufficientDataException e) {
