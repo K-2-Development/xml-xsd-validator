@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UploadFileService} from "../upload-file.service";
 //import {HttpEvent, HttpEventType} from "@angular/common/http";
 import {FilesService} from "../files.service";
+import {HttpEvent, HttpEventType} from "@angular/common/http";
 
 @Component({
   selector: 'app-upload-xsd-form',
@@ -27,7 +28,7 @@ export class UploadXsdFormComponent implements OnInit {
   }
 
   uploadFile() {
-  /*
+
     if(this.file != undefined) {
       this.uploadFileService.sendFile(this.file)
         .subscribe((event: HttpEvent<any>) => {
@@ -49,7 +50,7 @@ export class UploadXsdFormComponent implements OnInit {
           }
         });
     }
-    */
+
   }
 
 

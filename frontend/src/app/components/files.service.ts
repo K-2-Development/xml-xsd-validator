@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {saveAs} from "file-saver";
 import {FileDescription} from "./file-description";
-import {FileDeleteRespons} from "./fileDeleteRespons";
+import {FileDeleteResponse} from "./FileDeleteResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -58,9 +58,9 @@ export class FilesService {
 
   public deleteFile(id: number) {
     if (this.files.has(id)) {
-      this.http.delete<FileDeleteRespons>(`http://localhost:8088/api/v1/delete/${id}`).subscribe(
-        (response: FileDeleteRespons) => {
-          if (response.sucess) {
+      this.http.delete<FileDeleteResponse>(`http://localhost:8088/api/v1/delete/${id}`).subscribe(
+        (response: FileDeleteResponse) => {
+          if (response.success) {
             this.files.delete(response.id);
           }
           else
