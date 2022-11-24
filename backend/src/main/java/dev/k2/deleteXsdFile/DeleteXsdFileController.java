@@ -16,12 +16,7 @@ public class DeleteXsdFileController {
 
     @DeleteMapping("{fileId}")
     public ResponseEntity<FileDeleteResponse> deleteXsdFile(@PathVariable("fileId") Long fileId) {
-        try {
-            String fileName = service.deleteXsdFile(fileId);
-            return ResponseEntity.ok(new FileDeleteResponse(fileId, true, fileName + " deleted"));
-        }
-        catch (FileNotFoundException e) {
-            return ResponseEntity.ok(new FileDeleteResponse(fileId, true, e.toString()));
-        }
+        String fileName = service.deleteXsdFile(fileId);
+        return ResponseEntity.ok(new FileDeleteResponse(fileId, true, fileName + " deleted"));
     }
 }

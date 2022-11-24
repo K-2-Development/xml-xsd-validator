@@ -22,6 +22,6 @@ export class XsdListItemComponent implements OnInit {
   }
 
   delete(){
-
+    this.fileService.deleteFile(this.fileDescription.id);
   }
 }

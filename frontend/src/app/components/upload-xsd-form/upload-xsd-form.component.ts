@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UploadFileService} from "../upload-file.service";
-//import {HttpEvent, HttpEventType} from "@angular/common/http";
 import {FilesService} from "../files.service";
 import {HttpEvent, HttpEventType} from "@angular/common/http";
 
