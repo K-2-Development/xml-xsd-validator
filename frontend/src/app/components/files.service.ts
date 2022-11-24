@@ -45,7 +45,7 @@ export class FilesService {
     if(fileDescription != undefined) {
       filename = fileDescription.originalFilename;
     }
-    console.log("asdasd");
+    console.log("asdasdoo");
     this.http.get(`http://localhost:8088/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
@@ -57,21 +57,27 @@ export class FilesService {
   }
 
   public deleteFile(id: number) {
+    console.log("Deletebutton hit")
     if (this.files.has(id)) {
       this.http.delete<FileDeleteResponse>(`http://localhost:8088/api/v1/delete/${id}`).subscribe(
         (response: FileDeleteResponse) => {
+          console.log("AAA")
+          console.log("AAA" + response.message)
+          console.log("AAA")
+
           if (response.success) {
-            this.files.delete(response.id);
+            //this.files.delete(response.id);
+            console.log("should be gone");
           }
           else
           {
-            console.log("File on found in Mino")
+            console.log("File not found in Mino")
           }
         })
     }
     else
     {
-      console.log("This file no present in current cash")
+      console.log("This file ("+id+") no present in current cash")
     }
   }
 }
