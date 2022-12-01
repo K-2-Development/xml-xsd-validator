@@ -46,7 +46,7 @@ export class FilesService {
       filename = fileDescription.originalFilename;
     }
     console.log("asdasdoo");
-    this.http.get(`http://localhost:8088/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
+    this.http.get(`/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
           blob,
