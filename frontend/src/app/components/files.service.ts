@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {saveAs} from "file-saver";
 import {FileDescription} from "./file-description";
 import {FileDeleteResponse} from "./FileDeleteResponse";
-import { findIndex } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +46,7 @@ export class FilesService {
       filename = fileDescription.originalFilename;
     }
     console.log("asdasd");
-    this.http.get(`/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
+    this.http.get(`http://localhost:8088/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
           blob,
@@ -58,20 +57,11 @@ export class FilesService {
   }
 
   public deleteFile(id: number) {
-    console.log("into to delete " + id)
     if (this.files.has(id)) {
       this.http.delete<FileDeleteResponse>(`/api/v1/delete/${id}`).subscribe(
         (response: FileDeleteResponse) => {
           if (response.successful) {
             this.files.delete(response.id);
-            console.log("aaa");
-            console.log("aaa");
-            const index = this.filesArray.findIndex( (file)=> file.id === response.id);
-            if(index != -1)
-            this.filesArray.splice(index, 1);
-            else
-            console.log("did not change")
-          
           }
           else
           {
@@ -81,7 +71,7 @@ export class FilesService {
     }
     else
     {
-      console.log("This file no present in current cash")
+      console.log("This file ("+id+") no present in current cash")
     }
   }
 }
