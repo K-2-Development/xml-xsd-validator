@@ -45,7 +45,7 @@ export class FilesService {
     if(fileDescription != undefined) {
       filename = fileDescription.originalFilename;
     }
-    console.log("asdasd");
+    console.log("asdasdoo");
     this.http.get(`http://localhost:8088/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
@@ -57,11 +57,18 @@ export class FilesService {
   }
 
   public deleteFile(id: number) {
+    console.log("Deleting " + id)
     if (this.files.has(id)) {
       this.http.delete<FileDeleteResponse>(`/api/v1/delete/${id}`).subscribe(
         (response: FileDeleteResponse) => {
           if (response.successful) {
             this.files.delete(response.id);
+            const index = this.filesArray.findIndex( (file) => file.id === id);
+            console.log("Index " + id);
+            if(index != -1)
+            {
+              this.filesArray.slice(index, 1);
+            }
           }
           else
           {
