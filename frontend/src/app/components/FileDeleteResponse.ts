@@ -1,12 +1,12 @@
 export class FileDeleteResponse {
   id: number;
-  success: boolean;
+  successful: boolean;
   message: string;
 
 
-  constructor(id: number, success: boolean, message: string) {
+  constructor(id: number, successful: boolean, message: string) {
     this.id = id;
-    this.success = success;
+    this.successful = successful;
     this.message = message;
   }
 }
