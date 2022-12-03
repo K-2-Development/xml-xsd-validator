@@ -12,6 +12,7 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,12 @@ public class ValidateXmlService {
     private final XsdFileRepository xsdFileRepository;
 
     public ValidationResponse validateXml(String schemaId, String xmlToValidate) {
+     return validateXml(xsdFileRepository.getFile(schemaId), xmlToValidate);
+    }
 
+    public ValidationResponse validateXml(byte[] xsd, String xmlToValidate) {
 
-        byte[] xsd = xsdFileRepository.getFile(schemaId);
-        Source xmlSteam = new StreamSource(xmlToValidate);
+        Source xmlSteam = new StreamSource(new StringReader(xmlToValidate));
         Source xsdSteam = new StreamSource(new ByteArrayInputStream(xsd));
 
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
