@@ -3,7 +3,6 @@ package test.ValidateXmlService;
 import dev.k2.validateXml.ValidateXmlService;
 import dev.k2.validateXml.ValidationResponse;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
