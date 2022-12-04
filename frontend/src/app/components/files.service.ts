@@ -67,7 +67,7 @@ export class FilesService {
             console.log("Index " + id);
             if(index != -1)
             {
-              this.filesArray.slice(index, 1);
+              this.filesArray.splice(index, 1);
             }
           }
           else
