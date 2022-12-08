@@ -535,4 +535,9 @@ public class TestXsdFileRepository implements XsdFileRepository{
                         "\t</xsd:element>\n" +
                         "</xsd:schema>".getBytes()).getBytes();
     }
+
+    @Override
+    public void deleteFile(String fileName) {
+        ;
+    }
 }

@@ -36,24 +36,11 @@ public class MinioXsdFileRepository implements XsdFileRepository{
 
             return response.etag();
 
-        } catch (ErrorResponseException e) {
-            throw new RuntimeException(e);
-        } catch (InsufficientDataException e) {
-            throw new RuntimeException(e);
-        } catch (InternalException e) {
-            throw new RuntimeException(e);
         } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidResponseException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (ServerException e) {
-            throw new RuntimeException(e);
-        } catch (XmlParserException e) {
-            throw new RuntimeException(e);
+            throw new XsdNotFoundException(e);
+
+        } catch (MinioException | NoSuchAlgorithmException | IOException e) {
+            throw new MinioRepositoryInternalException(e);
         }
     }
 
@@ -69,7 +56,26 @@ public class MinioXsdFileRepository implements XsdFileRepository{
                             .build());
 
             return getObjectResponse.readAllBytes();
+        } catch (InvalidKeyException e) {
+            throw new XsdNotFoundException(e);
 
+        } catch (MinioException | NoSuchAlgorithmException | IOException e) {
+            throw new MinioRepositoryInternalException(e);
+        }
+
+
+    }
+
+    @Override
+    public void deleteFile(String fileName) {
+
+        try {
+            minioClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(fileName)
+                            .build()
+            );
         } catch (ErrorResponseException e) {
             throw new RuntimeException(e);
         } catch (InsufficientDataException e) {
@@ -89,6 +95,5 @@ public class MinioXsdFileRepository implements XsdFileRepository{
         } catch (XmlParserException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
