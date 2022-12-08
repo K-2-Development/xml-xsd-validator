@@ -45,7 +45,6 @@ export class FilesService {
     if(fileDescription != undefined) {
       filename = fileDescription.originalFilename;
     }
-    console.log("asdasdoo");
     this.http.get(`/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
@@ -57,14 +56,12 @@ export class FilesService {
   }
 
   public deleteFile(id: number) {
-    console.log("Deleting " + id)
     if (this.files.has(id)) {
       this.http.delete<FileDeleteResponse>(`/api/v1/delete/${id}`).subscribe(
         (response: FileDeleteResponse) => {
           if (response.successful) {
             this.files.delete(response.id);
             const index = this.filesArray.findIndex( (file) => file.id === id);
-            console.log("Index " + id);
             if(index != -1)
             {
               this.filesArray.splice(index, 1);
@@ -72,7 +69,7 @@ export class FilesService {
           }
           else
           {
-            console.log("File not found in Mino")
+            console.log("File not found in Minio")
           }
         })
     }
