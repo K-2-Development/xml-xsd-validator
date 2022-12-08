@@ -12,6 +12,6 @@ export class UploadFileService {
   public sendFile(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append("file", file);
-    return this.httpClient.post("http://localhost:8088/api/v1/upload", formData, {reportProgress: true, observe: "events"});
+    return this.httpClient.post("/api/v1/upload", formData, {reportProgress: true, observe: "events"});
   }
 }
