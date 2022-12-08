@@ -59,6 +59,9 @@ public class MinioXsdFileRepository implements XsdFileRepository{
         } catch (InvalidKeyException e) {
             throw new XsdNotFoundException(e);
 
+        } catch (io.minio.errors.XmlParserException e) {
+            throw new XmlParserException(e);
+
         } catch (MinioException | NoSuchAlgorithmException | IOException e) {
             throw new MinioRepositoryInternalException(e);
         }
@@ -76,24 +79,15 @@ public class MinioXsdFileRepository implements XsdFileRepository{
                             .object(fileName)
                             .build()
             );
-        } catch (ErrorResponseException e) {
-            throw new RuntimeException(e);
-        } catch (InsufficientDataException e) {
-            throw new RuntimeException(e);
-        } catch (InternalException e) {
-            throw new RuntimeException(e);
+
         } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidResponseException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (ServerException e) {
-            throw new RuntimeException(e);
-        } catch (XmlParserException e) {
-            throw new RuntimeException(e);
+            throw new XsdNotFoundException(e);
+
+        } catch (io.minio.errors.XmlParserException e) {
+            throw new XmlParserException(e);
+
+        } catch (MinioException | NoSuchAlgorithmException | IOException e) {
+            throw new MinioRepositoryInternalException(e);
         }
     }
 }

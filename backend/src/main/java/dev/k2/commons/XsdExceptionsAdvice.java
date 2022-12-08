@@ -10,6 +10,11 @@ public class XsdExceptionsAdvice {
 
     @ExceptionHandler(XsdNotFoundException.class)
     public ResponseEntity<String> handleXsdNotFoundException(XsdNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("XSd Not Found\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(XsdNotFoundException.class)
+    public ResponseEntity<String> handleXmlParserException(XmlParserException e) {
+        return new ResponseEntity<>("Xml could not be parsed\n" + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
