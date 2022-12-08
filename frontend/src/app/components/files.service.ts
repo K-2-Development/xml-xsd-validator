@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {saveAs} from "file-saver";
 import {FileDescription} from "./file-description";
+import {FileDeleteResponse} from "./FileDeleteResponse";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +26,7 @@ export class FilesService {
 
   loadAllFiles() {
     this.files = new Map();
-    this.http.get<FileDescription[]>("http://localhost:8088/api/v1/files").subscribe(
+    this.http.get<FileDescription[]>("/api/v1/files").subscribe(
       (response: FileDescription[]) => {
         this.filesArray = response;
         response.forEach(
@@ -43,8 +45,8 @@ export class FilesService {
     if(fileDescription != undefined) {
       filename = fileDescription.originalFilename;
     }
-    console.log("asdasd");
-    this.http.get(`http://localhost:8088/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
+    console.log("asdasdoo");
+    this.http.get(`/api/v1/files/${id}`, {responseType: "blob"}).subscribe(
       (blob: Blob) => {
         saveAs(
           blob,
@@ -55,6 +57,28 @@ export class FilesService {
   }
 
   public deleteFile(id: number) {
-    console.log("Waiting for implementation :(.")
+    console.log("Deleting " + id)
+    if (this.files.has(id)) {
+      this.http.delete<FileDeleteResponse>(`/api/v1/delete/${id}`).subscribe(
+        (response: FileDeleteResponse) => {
+          if (response.successful) {
+            this.files.delete(response.id);
+            const index = this.filesArray.findIndex( (file) => file.id === id);
+            console.log("Index " + id);
+            if(index != -1)
+            {
+              this.filesArray.splice(index, 1);
+            }
+          }
+          else
+          {
+            console.log("File not found in Mino")
+          }
+        })
+    }
+    else
+    {
+      console.log("This file ("+id+") no present in current cash")
+    }
   }
 }
