@@ -1,18 +1,25 @@
 if [ -d "docker/prod" ]
 then
-  cd docker/prod
+  cd docker/prod || exit
+  echo "Compose down:"
   docker compose down
-  $(dirname $0)
   cd ..
   cd ..
 fi
 
-$(dirname $0)
-
+echo "Clean:"
 mvn clean -Pdocker-image
+echo "Package:"
 mvn package -Pdocker-image
 
-docker compose up
+if [ -d "docker/prod" ]
+then
+  cd docker/prod || exit
+  echo "Compose up:"
+  docker compose up
+else
+    echo "docker/prod not found, cannot compose up "
+fi
 
 echo "Done, press any key to continue"
 while [ true ] ; do
