@@ -1,0 +1,11 @@
+<pit:Zalacznik_PIT_ZG xmlns:pit="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2018/11/30/eD/PITZGZ39/">
+  <pit:Naglowek>
+    <pit:KodFormularza kodSystemowy="PIT/ZG (6)" wersjaSchemy="1-0E">PIT/ZG</pit:KodFormularza>
+    <pit:WariantFormularza>6</pit:WariantFormularza>
+  </pit:Naglowek>
+  <pit:PozycjeSzczegolowe>
+    <pit:P_7>GI</pit:P_7>
+    <pit:P_34>1000.000000000000</pit:P_34>
+    <pit:P_35>1000.000000000000</pit:P_35>
+  </pit:PozycjeSzczegolowe>
+</pit:Zalacznik_PIT_ZG>

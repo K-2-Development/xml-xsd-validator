@@ -28,10 +28,11 @@ public class ValidateXmlController {
         System.out.println(asd);
         System.out.println(asd2);
         System.out.println(schemaId);
-        return ResponseEntity.ok(new ValidationResponse());
-//        ValidationResponse validationResponse = validateXmlService.validateXml(schemaId, xmlToValidate);
-//        return validationResponse.getValid() ?
-//                ResponseEntity.ok(validationResponse) :
-//                ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(validationResponse);
+
+        ValidationResponse validationResponse = validateXmlService.validateXml(schemaId, xmlToValidate);
+
+        return validationResponse.getValid() ?
+                ResponseEntity.ok(validationResponse) :
+                ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(validationResponse);
     }
 }
